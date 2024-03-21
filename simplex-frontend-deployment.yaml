@@ -1,0 +1,22 @@
+﻿apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: simplex-frontend-deployment
+  labels:
+    app: simplex-frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: simplex-frontend
+  template:
+    metadata:
+      labels:
+        app: simplex-frontend
+    spec:
+      containers:
+        - name: simplex-frontend
+          image: siverteh/simplex-frontend:latest  # Use the correct image path and tag
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080  # Adjust if your app listens on a different port

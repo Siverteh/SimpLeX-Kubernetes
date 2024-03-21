@@ -1,0 +1,12 @@
+﻿apiVersion: v1
+kind: Service
+metadata:
+  name: simplex-frontend-service
+spec:
+  type: NodePort  # Change to LoadBalancer if you're on a cloud provider that supports it
+  selector:
+    app: simplex-frontend
+  ports:
+    - port: 80
+      targetPort: 8080  # This should match the container's listening port
+      nodePort: 30080  # Optional: only needed for NodePort; Kubernetes chooses a port if omitted

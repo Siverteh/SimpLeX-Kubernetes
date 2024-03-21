@@ -1,0 +1,12 @@
+﻿apiVersion: v1
+kind: Service
+metadata:
+  name: simplex-backend-service
+spec:
+  type: NodePort  # Change to LoadBalancer if appropriate for your environment
+  selector:
+    app: simplex-backend
+  ports:
+    - port: 80
+      targetPort: 5050  # This should match the container's listening port
+      nodePort: 30081  # Optionally specify a NodePort; if omitted, one will be chosen automatically
