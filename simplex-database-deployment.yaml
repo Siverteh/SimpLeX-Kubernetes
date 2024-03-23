@@ -1,26 +1,30 @@
 ﻿apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: postgres
+  name: simplex-database-deployment
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: postgres
+      app: database
   template:
     metadata:
       labels:
-        app: postgres
+        app: database
     spec:
       containers:
-        - name: postgres
-          image: postgres:13
+        - name: database
+          image: postgres:latest
+          imagePullPolicy: Always
           env:
-            - name: POSTGRES_DB
-              value: simplex
-            - name: POSTGRES_USER
-              value: user
             - name: POSTGRES_PASSWORD
-              value: password
+              value: "skallesverd5"
           ports:
             - containerPort: 5432
+          volumeMounts:
+            - name: database-storage
+              mountPath: /var/lib/postgresql/data
+      volumes:
+        - name: database-storage
+          persistentVolumeClaim:
+            claimName: simplex-database-pvc
