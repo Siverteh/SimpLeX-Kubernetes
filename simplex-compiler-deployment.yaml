@@ -1,19 +1,19 @@
 ﻿apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: latex-compiler-deployment
+  name: simplex-compiler-deployment
 spec:
   replicas: 1  # Start with 1 replica, can be scaled as needed
   selector:
     matchLabels:
-      app: latex-compiler
+      app: simplex-compiler
   template:
     metadata:
       labels:
-        app: latex-compiler
+        app: simplex-compiler
     spec:
       containers:
-        - name: latex-compiler
+        - name: simplex-compiler
           image: siverteh/simplex-compiler:latest
           ports:
-            - containerPort: 80  # Ensure this matches the port your app listens on
+            - containerPort: 8080  # Ensure this matches the port your app listens on

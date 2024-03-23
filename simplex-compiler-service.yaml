@@ -1,0 +1,11 @@
+﻿apiVersion: v1
+kind: Service
+metadata:
+  name: simplex-compiler-service
+spec:
+  type: ClusterIP
+  selector:
+    app: simplex-compiler
+  ports:
+    - port: 8080
+      targetPort: 8080

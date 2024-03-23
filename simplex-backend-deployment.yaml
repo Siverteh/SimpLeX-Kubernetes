@@ -19,4 +19,4 @@ spec:
           image: siverteh/simplex-backend:latest  # Ensure this points to your backend image in the container registry
           imagePullPolicy: Always
           ports:
-            - containerPort: 5050  # This should match the port your backend listens on
+            - containerPort: 8080  # This should match the port your backend listens on

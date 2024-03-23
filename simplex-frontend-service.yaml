@@ -7,6 +7,5 @@ spec:
   selector:
     app: simplex-frontend
   ports:
-    - port: 80
+    - port: 8080
       targetPort: 8080  # This should match the container's listening port
-      nodePort: 30080  # Optional: only needed for NodePort; Kubernetes chooses a port if omitted

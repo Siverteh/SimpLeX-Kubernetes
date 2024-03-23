@@ -7,6 +7,5 @@ spec:
   selector:
     app: simplex-backend
   ports:
-    - port: 80
-      targetPort: 5050  # This should match the container's listening port
-      nodePort: 30081  # Optionally specify a NodePort; if omitted, one will be chosen automatically
+    - port: 8080
+      targetPort: 8080  # This should match the container's listening port
