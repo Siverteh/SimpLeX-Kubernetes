@@ -1,4 +1,5 @@
-﻿apiVersion: apps/v1
+﻿
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: simplex-database-deployment
@@ -6,25 +7,32 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: database
+      app: simplex-database
   template:
     metadata:
       labels:
-        app: database
+        app: simplex-database
     spec:
       containers:
-        - name: database
-          image: postgres:latest
-          imagePullPolicy: Always
-          env:
-            - name: POSTGRES_PASSWORD
-              value: "skallesverd5"
+        - name: postgres
+          image: postgres:16
           ports:
             - containerPort: 5432
+          env:
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: simplex-database-secret
+                  key: postgres-password
           volumeMounts:
-            - name: database-storage
+            - name: postgres-storage
               mountPath: /var/lib/postgresql/data
+            - name: init-db-script
+              mountPath: /docker-entrypoint-initdb.d
       volumes:
-        - name: database-storage
+        - name: postgres-storage
           persistentVolumeClaim:
             claimName: simplex-database-pvc
+        - name: init-db-script
+          configMap:
+            name: simplex-database-init

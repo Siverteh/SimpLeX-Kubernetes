@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: simplex-frontend
-          image: siverteh/simplex-frontend:latest  # Use the correct image path and tag
+          image: siverteh/simplex-frontend:test  # Use the correct image path and tag
           imagePullPolicy: Always
           ports:
             - containerPort: 8080  # Adjust if your app listens on a different port

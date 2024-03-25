@@ -1,0 +1,23 @@
+﻿apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: simplex-database-init
+data:
+  init.sql: |
+    CREATE TABLE IF NOT EXISTS "AspNetUsers" (
+        "Id" TEXT PRIMARY KEY,
+        "UserName" VARCHAR(256) NOT NULL,
+        "NormalizedUserName" VARCHAR(256) NOT NULL UNIQUE,
+        "Email" VARCHAR(256),
+        "NormalizedEmail" VARCHAR(256) UNIQUE,
+        "EmailConfirmed" BOOLEAN NOT NULL,
+        "PasswordHash" TEXT,
+        "SecurityStamp" TEXT,
+        "ConcurrencyStamp" TEXT,
+        "PhoneNumber" TEXT,
+        "PhoneNumberConfirmed" BOOLEAN NOT NULL,
+        "TwoFactorEnabled" BOOLEAN NOT NULL,
+        "LockoutEnd" TIMESTAMPTZ,
+        "LockoutEnabled" BOOLEAN NOT NULL,
+        "AccessFailedCount" INT NOT NULL
+        );

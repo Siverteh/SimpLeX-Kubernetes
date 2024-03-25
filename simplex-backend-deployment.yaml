@@ -16,7 +16,21 @@ spec:
     spec:
       containers:
         - name: simplex-backend
-          image: siverteh/simplex-backend:latest  # Ensure this points to your backend image in the container registry
+          image: siverteh/simplex-backend:test  # Ensure this points to your actual backend image
           imagePullPolicy: Always
           ports:
             - containerPort: 8080  # This should match the port your backend listens on
+          env:
+            - name: DATABASE_HOST
+              value: "simplex-database-service"  # Assuming you have a service named 'simplex-database-service' for your DB
+            - name: DATABASE_PORT
+              value: "5432"  # Default PostgreSQL port
+            - name: DATABASE_NAME
+              value: "simplex_db"  # Your actual database name
+            - name: DATABASE_USER
+              value: "postgres"  # Your actual database user
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: simplex-database-secret
+                  key: postgres-password
