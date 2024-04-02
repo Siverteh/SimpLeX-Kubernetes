@@ -29,8 +29,10 @@ data:
         "Title" VARCHAR(256) NOT NULL,
         "Owner" VARCHAR(256) NOT NULL,
         "LatexCode" TEXT,
+        "WorkspaceState" TEXT,
         "CreationDate" TIMESTAMPTZ NOT NULL DEFAULT NOW(),
         "LastModifiedDate" TIMESTAMPTZ NOT NULL DEFAULT NOW(),
         "UserId" TEXT NOT NULL,
-        FOREIGN KEY ("UserId") REFERENCES "AspNetUsers"("Id") ON DELETE CASCADE
+        FOREIGN KEY ("UserId") REFERE
+    NCES "AspNetUsers"("Id") ON DELETE CASCADE
     );
