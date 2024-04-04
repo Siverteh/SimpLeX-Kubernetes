@@ -33,4 +33,6 @@ data:
         "LastModifiedDate" TIMESTAMPTZ NOT NULL DEFAULT NOW(),
         "UserId" TEXT NOT NULL,
         FOREIGN KEY ("UserId") REFERENCES "AspNetUsers"("Id") ON DELETE CASCADE
-    );
+        );
+
+    
