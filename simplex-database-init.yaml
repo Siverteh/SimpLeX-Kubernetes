@@ -29,10 +29,31 @@ data:
         "Title" VARCHAR(256) NOT NULL,
         "Owner" VARCHAR(256) NOT NULL,
         "LatexCode" TEXT,
+        "WorkspaceState" TEXT,
         "CreationDate" TIMESTAMPTZ NOT NULL DEFAULT NOW(),
         "LastModifiedDate" TIMESTAMPTZ NOT NULL DEFAULT NOW(),
         "UserId" TEXT NOT NULL,
         FOREIGN KEY ("UserId") REFERENCES "AspNetUsers"("Id") ON DELETE CASCADE
         );
+    
+    CREATE TABLE IF NOT EXISTS "Collaborators" (
+        "CollaborationId" TEXT PRIMARY KEY DEFAULT gen_random_uuid(),
+        "ProjectId" TEXT NOT NULL,
+        "UserId" TEXT NOT NULL,
+        "AccessType" VARCHAR(50) NOT NULL DEFAULT 'editor',  -- e.g., 'editor', 'viewer'
+        FOREIGN KEY ("ProjectId") REFERENCES "Projects"("ProjectId") ON DELETE CASCADE,
+        FOREIGN KEY ("UserId") REFERENCES "AspNetUsers"("Id") ON DELETE CASCADE
+    );
+    
+    CREATE TABLE IF NOT EXISTS "ShareLinks" (
+        "ShareLinkId" TEXT PRIMARY KEY DEFAULT gen_random_uuid(),
+        "ProjectId" TEXT NOT NULL,
+        "InvitationToken" TEXT NOT NULL UNIQUE,
+        "TokenExpiry" TIMESTAMPTZ NOT NULL,
+        FOREIGN KEY ("ProjectId") REFERENCES "Projects"("ProjectId") ON DELETE CASCADE
+    );
+
+
+
 
     

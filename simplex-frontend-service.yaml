@@ -9,4 +9,3 @@ spec:
   ports:
     - port: 8080
       targetPort: 8080  # This should match the container's listening port
-      nodePort: 31688
