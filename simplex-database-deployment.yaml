@@ -30,8 +30,7 @@ spec:
               mountPath: /docker-entrypoint-initdb.d
       volumes:
         - name: postgres-storage
-          persistentVolumeClaim:
-            claimName: simplex-database-pvc
+          emptyDir: {}
         - name: init-db-script
           configMap:
             name: simplex-database-init
