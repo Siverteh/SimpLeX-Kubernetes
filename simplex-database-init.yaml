@@ -53,7 +53,15 @@ data:
         FOREIGN KEY ("ProjectId") REFERENCES "Projects"("ProjectId") ON DELETE CASCADE
     );
 
-
+    CREATE TABLE IF NOT EXISTS "ChatMessages" (
+        "MessageId" TEXT PRIMARY KEY DEFAULT gen_random_uuid(),
+        "ProjectId" TEXT NOT NULL,
+        "UserId" TEXT NOT NULL,
+        "Message" TEXT NOT NULL,
+        "Timestamp" TEXT NOT NULL,
+        FOREIGN KEY ("ProjectId") REFERENCES "Projects"("ProjectId") ON DELETE CASCADE,
+        FOREIGN KEY ("UserId") REFERENCES "AspNetUsers"("Id") ON DELETE CASCADE
+        );
 
 
     

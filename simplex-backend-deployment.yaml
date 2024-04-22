@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: simplex-backend
-          image: siverteh/simplex-backend:test  # Ensure this points to your actual backend image
+          image: siverteh/simplex-backend:ole  # Ensure this points to your actual backend image
           imagePullPolicy: Always
           ports:
             - containerPort: 8080  # This should match the port your backend listens on
